@@ -1,4 +1,5 @@
 *.pyc
+.settings
 dev.settings
 test.settings
 test.env
@@ -11,3 +12,9 @@ wolfit_test.db
 .vscode/
 .idea
 .DS_STORE
+/app
+/art
+/migrations
+/tests
+.ini
+load_reddit_posts.py
