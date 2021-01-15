@@ -1,5 +1,5 @@
 *.pyc
-.settings
+*.settings
 dev.settings
 test.settings
 test.env
@@ -16,5 +16,5 @@ wolfit_test.db
 /art
 /migrations
 /tests
-.ini
+*.ini
 load_reddit_posts.py
