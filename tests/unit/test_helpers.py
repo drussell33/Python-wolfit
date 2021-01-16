@@ -35,3 +35,6 @@ def test_a_minute_ago():
 
 def test_an_hour_ago():
     assert (pretty_date(datetime.utcnow() - timedelta(seconds=3600))) == "an hour ago"
+
+def test_3_hours_ago():
+    assert (pretty_date(datetime.utcnow() - timedelta(seconds=10800))) == "3 hours ago"
