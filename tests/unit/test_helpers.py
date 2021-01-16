@@ -41,3 +41,9 @@ def test_an_hour_ago():
 
 def test_3_hours_ago():
     assert (pretty_date(datetime.utcnow() - timedelta(seconds=10800))) == "3 hours ago"
+
+# def test_epoch_int_input_for_jan15():
+#     assert (pretty_date(1610712001) == "Yesterday")
+
+def test_epoch_int_input_for_jan152020():
+    assert (pretty_date(1579089601) == "1 years ago")
