@@ -47,3 +47,6 @@ def test_3_hours_ago():
 
 def test_epoch_int_input_for_jan152020():
     assert (pretty_date(1579089601) == "1 years ago")
+
+def test_bad_input():
+    assert (pretty_date(datetime.utcnow() - timedelta(days=-1))) == "just about now"
