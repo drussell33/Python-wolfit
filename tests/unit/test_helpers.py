@@ -14,3 +14,6 @@ def test_now():
 
 def test_yesterday():
     assert (pretty_date(datetime.utcnow() - timedelta(days=1))) == "Yesterday"
+
+def test_2_days_ago():
+    assert (pretty_date(datetime.utcnow() - timedelta(days=2))) == "2 days ago"
