@@ -146,3 +146,24 @@ def test_posts_can_be_just_links_without_body(client, test_user):
     title = "Link post"
     new_post = Post(title=title, link=True, url="http://wou.edu")
     assert new_post.link
+
+# Created Unit Tests Below -------------------------------
+def test_comments_can_be__down_voted_on(client, test_user, single_post_with_comment):
+    comment = single_post_with_comment.comments[0]
+    new_user = User(username="robot", email="robot@gmail.com")
+    second_user = User(username="robot2", email="robot2@gmail.com")
+    db.session.add(new_user)
+    db.session.add(second_user)
+    db.session.commit()
+    comment.up_vote(new_user)
+    comment.down_vote(second_user)
+    # All comments start with a default vote count of 1
+    assert comment.vote_count == 1
+
+def test_user_cannot_change_down_vote_count_for_own_comment(
+    client, test_user, single_post_with_comment
+):
+    c = single_post_with_comment.comments[0]
+    assert c.vote_count == 1
+    c.down_vote(test_user)
+    assert c.vote_count == 1

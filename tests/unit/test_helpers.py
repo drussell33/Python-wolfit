@@ -50,3 +50,6 @@ def test_epoch_int_input_for_jan152020():
 
 def test_bad_input():
     assert (pretty_date(datetime.utcnow() - timedelta(days=-1))) == "just about now"
+
+def test_no_input():
+    assert (pretty_date() == "just now")
