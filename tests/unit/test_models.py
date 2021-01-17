@@ -167,3 +167,25 @@ def test_user_cannot_change_down_vote_count_for_own_comment(
     assert c.vote_count == 1
     c.down_vote(test_user)
     assert c.vote_count == 1
+
+def test_post_vote_count_goes_down_after_down_voting(client, test_user, single_post):
+    assert single_post.vote_count == 0
+    single_post.up_vote(test_user)
+    assert single_post.vote_count == 1
+    new_user = User(username="robot", email="robot@gmail.com")
+    db.session.add(new_user)
+    db.session.commit()
+    single_post.down_vote(new_user)
+    assert single_post.vote_count == 0
+
+def test_a_user_can_only_down_vote_once(client, test_user, single_post):
+    single_post.up_vote(test_user)
+    new_user = User(username="robot", email="robot@gmail.com")
+    second_user = User(username="robot2", email="robot2@gmail.com")
+    db.session.add(new_user)
+    db.session.add(second_user)
+    db.session.commit()
+    single_post.up_vote(new_user)
+    single_post.down_vote(second_user)
+    single_post.down_vote(second_user)
+    assert single_post.vote_count == 1
