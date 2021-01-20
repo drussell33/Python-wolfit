@@ -23,10 +23,10 @@ def before_request():
         db.session.commit()
 
 
-def shutdown_server():
+def shutdown_server(): # pragma : no cover
     func = request.environ.get("werkzeug.server.shutdown")
     if func is None:
-        raise RuntimeError("Not running with the Werkzeug Server")
+        raise RuntimeError("Not running with the Werkzeug Server") # pragma : no cover
     func()
 
 
